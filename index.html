@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free, fast, and 100% client-side QR Code Generator. Create, customize, and download high-resolution PNG QR codes instantly without any backend." />
+  <meta name="keywords" content="qr code generator, free qr code, client-side qr code, static qr code, download qr code png, custom qr code" />
+  <meta name="theme-color" content="#3b82f6" />
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="QR Code Generator — Free, Fast & Client-Side" />
+  <meta property="og:description" content="Generate customizable, high-resolution QR codes directly in your browser. No server required, privacy-first." />
+  <meta property="og:image" content="https://raw.githubusercontent.com/jrquick17/qr-code-generator/main/preview.png" />
+
+  <title>QR Code Generator — Fast, Free & Private</title>
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Background subtle decorative aura -->
+  <div class="bg-decoration" aria-hidden="true"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-badge">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+          <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+          <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+          <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+          <line x1="7" y1="7" x2="7.01" y2="7"></line>
+          <line x1="17" y1="7" x2="17.01" y2="7"></line>
+          <line x1="7" y1="17" x2="7.01" y2="17"></line>
+          <line x1="17" y1="17" x2="17.01" y2="17"></line>
+        </svg>
+        <span class="logo-tag">100% Client-Side</span>
+      </div>
+      <h1 class="app-title">QR Code Generator</h1>
+      <p class="app-subtitle">Create customizable, high-resolution QR codes instantly in your browser.</p>
+    </header>
+
+    <!-- Main Generator Card -->
+    <main class="generator-card" id="generatorCard">
+      <!-- Input Panel -->
+      <section class="panel input-panel" aria-labelledby="input-heading">
+        <h2 id="input-heading" class="sr-only">QR Code Configuration</h2>
+
+        <!-- Quick Type Selector -->
+        <div class="form-group">
+          <label class="section-label">Content Type</label>
+          <div class="type-selector" role="tablist" aria-label="Content Type Presets">
+            <button type="button" class="type-pill active" data-type="url" role="tab" aria-selected="true">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+              <span>URL</span>
+            </button>
+            <button type="button" class="type-pill" data-type="text" role="tab" aria-selected="false">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                <line x1="9" y1="20" x2="15" y2="20"></line>
+                <line x1="12" y1="4" x2="12" y2="20"></line>
+              </svg>
+              <span>Text</span>
+            </button>
+            <button type="button" class="type-pill" data-type="wifi" role="tab" aria-selected="false">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                <line x1="12" y1="20" x2="12.01" y2="20"></line>
+              </svg>
+              <span>Wi-Fi</span>
+            </button>
+            <button type="button" class="type-pill" data-type="email" role="tab" aria-selected="false">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>Email</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Inputs Container -->
+        <div class="form-group" id="inputContainer">
+          <div class="input-header-row">
+            <label for="qrInput" id="qrInputLabel" class="section-label">Website URL or Text</label>
+            <span class="char-count" id="charCount">0 chars</span>
+          </div>
+          <div class="input-wrapper">
+            <textarea
+              id="qrInput"
+              class="form-control text-input"
+              rows="3"
+              placeholder="https://example.com or enter your text..."
+              autocomplete="off"
+              spellcheck="false"
+            >https://jrquick.com</textarea>
+            <button type="button" class="btn-clear" id="btnClearInput" title="Clear input" aria-label="Clear input">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <p class="input-hint" id="inputHint">Press Enter or click "Generate QR Code" to update.</p>
+        </div>
+
+        <!-- Wi-Fi Helper Fields (Hidden by default) -->
+        <div class="wifi-fields hidden" id="wifiFields">
+          <div class="form-group">
+            <label for="wifiSsid" class="section-label">Network Name (SSID)</label>
+            <input type="text" id="wifiSsid" class="form-control" placeholder="e.g. Home_WiFi_5G" />
+          </div>
+          <div class="form-row">
+            <div class="form-group flex-2">
+              <label for="wifiPassword" class="section-label">Password</label>
+              <input type="text" id="wifiPassword" class="form-control" placeholder="Network password" />
+            </div>
+            <div class="form-group flex-1">
+              <label for="wifiAuth" class="section-label">Security</label>
+              <select id="wifiAuth" class="form-control select-control">
+                <option value="WPA">WPA/WPA2</option>
+                <option value="WEP">WEP</option>
+                <option value="nopass">None (Open)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customization Options Accordion/Section -->
+        <div class="customization-section">
+          <div class="section-divider">
+            <span>Customize Style</span>
+          </div>
+
+          <div class="settings-grid">
+            <!-- Foreground / Dark Color -->
+            <div class="setting-item">
+              <label for="fgColorInput" class="setting-label">Code Color</label>
+              <div class="color-picker-wrap">
+                <input type="color" id="fgColorInput" class="color-picker" value="#0f172a" title="Choose QR code color" />
+                <span class="color-hex" id="fgHexDisplay">#0F172A</span>
+              </div>
+            </div>
+
+            <!-- Background / Light Color -->
+            <div class="setting-item">
+              <label for="bgColorInput" class="setting-label">Background</label>
+              <div class="color-picker-wrap">
+                <input type="color" id="bgColorInput" class="color-picker" value="#ffffff" title="Choose background color" />
+                <span class="color-hex" id="bgHexDisplay">#FFFFFF</span>
+              </div>
+            </div>
+
+            <!-- Resolution / Size Export -->
+            <div class="setting-item">
+              <label for="sizeSelect" class="setting-label">Export Size</label>
+              <select id="sizeSelect" class="form-control select-control">
+                <option value="256">256 × 256 px (Standard)</option>
+                <option value="512" selected>512 × 512 px (HD)</option>
+                <option value="1024">1024 × 1024 px (Print / 4K)</option>
+              </select>
+            </div>
+
+            <!-- Error Correction Level -->
+            <div class="setting-item">
+              <label for="eccSelect" class="setting-label">Error Correction</label>
+              <select id="eccSelect" class="form-control select-control">
+                <option value="L">Level L (7% recovery)</option>
+                <option value="M">Level M (15% recovery)</option>
+                <option value="Q">Level Q (25% recovery)</option>
+                <option value="H" selected>Level H (30% recovery)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Color Presets -->
+          <div class="presets-row">
+            <span class="presets-label">Color Themes:</span>
+            <div class="preset-buttons" id="presetButtons">
+              <button type="button" class="preset-btn active" data-fg="#0f172a" data-bg="#ffffff" title="Classic Dark & Light">
+                <span class="swatch-split" style="background: linear-gradient(135deg, #0f172a 50%, #ffffff 50%);"></span>
+              </button>
+              <button type="button" class="preset-btn" data-fg="#1d4ed8" data-bg="#eff6ff" title="Ocean Blue">
+                <span class="swatch-split" style="background: linear-gradient(135deg, #1d4ed8 50%, #eff6ff 50%);"></span>
+              </button>
+              <button type="button" class="preset-btn" data-fg="#047857" data-bg="#ecfdf5" title="Emerald Forest">
+                <span class="swatch-split" style="background: linear-gradient(135deg, #047857 50%, #ecfdf5 50%);"></span>
+              </button>
+              <button type="button" class="preset-btn" data-fg="#6d28d9" data-bg="#f5f3ff" title="Royal Violet">
+                <span class="swatch-split" style="background: linear-gradient(135deg, #6d28d9 50%, #f5f3ff 50%);"></span>
+              </button>
+              <button type="button" class="preset-btn" data-fg="#b91c1c" data-bg="#fef2f2" title="Crimson Ruby">
+                <span class="swatch-split" style="background: linear-gradient(135deg, #b91c1c 50%, #fef2f2 50%);"></span>
+              </button>
+              <button type="button" class="preset-btn" data-fg="#ffffff" data-bg="#0f172a" title="Inverted Dark Mode">
+                <span class="swatch-split" style="background: linear-gradient(135deg, #ffffff 50%, #0f172a 50%);"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Action Button -->
+        <div class="action-row">
+          <button type="button" class="btn btn-primary" id="btnGenerate">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Generate QR Code</span>
+          </button>
+          <button type="button" class="btn btn-secondary" id="btnReset" title="Reset to default">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <polyline points="23 20 23 14 17 14"></polyline>
+              <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+            </svg>
+            <span>Reset</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Preview & Download Panel -->
+      <section class="panel preview-panel" aria-labelledby="preview-heading">
+        <h2 id="preview-heading" class="section-label text-center">Live Preview</h2>
+
+        <div class="qr-display-container">
+          <div class="qr-canvas-frame" id="qrFrame">
+            <!-- QRCode element container -->
+            <div id="qrcode" class="qrcode-wrapper" aria-label="Generated QR Code image"></div>
+            <!-- Loading skeleton / empty state placeholder -->
+            <div id="qrPlaceholder" class="qr-placeholder hidden">
+              <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="placeholder-icon">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <p>Type content & click Generate</p>
+            </div>
+          </div>
+
+          <!-- Metadata Badges -->
+          <div class="meta-badges" id="metaBadges">
+            <span class="meta-badge" id="badgeResolution">512 × 512 px</span>
+            <span class="meta-badge" id="badgeEcc">Level H (30%)</span>
+            <span class="meta-badge">PNG</span>
+          </div>
+        </div>
+
+        <!-- Download & Copy Action Buttons -->
+        <div class="download-actions">
+          <button type="button" class="btn btn-download" id="btnDownload">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Download PNG</span>
+          </button>
+
+          <button type="button" class="btn btn-secondary btn-copy" id="btnCopyImage" title="Copy QR Code Image to Clipboard">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy Image</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-privacy">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        <span>Zero tracking &bull; 100% Client-Side in your browser</span>
+      </div>
+      <p class="footer-copy">
+        Free &amp; Open Source &bull; Ready for GitHub Pages
+      </p>
+    </footer>
+  </div>
+
+  <!-- QR Code Library via CDN (qrcodejs) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- Application Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
